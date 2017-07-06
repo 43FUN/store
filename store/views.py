@@ -2,8 +2,10 @@
 from django.views import generic
 from django.http import JsonResponse
 from django.core.mail import send_mail
+from django.shortcuts import get_object_or_404
 
 from store.forms import FeedbackForm
+from store.models import Products
 
 
 class FeedbackView(generic.CreateView):
@@ -22,3 +24,19 @@ class FeedbackView(generic.CreateView):
         form.save()
 
         return JsonResponse({'response': 'success'})
+
+
+class ProductsListView(generic.ListView):
+    queryset = Products.objects.all()
+
+
+class ProductsDetailView(generic.DetailView):
+    model = Products
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['product'] = get_object_or_404(
+            Products, id=self.kwargs.get('pk')
+        )
+        return context
+

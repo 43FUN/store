@@ -1,0 +1,29 @@
+{% extends 'store/base.html' %}
+
+{% load staticfiles store_tags %}
+
+{% block title %}Товары{% endblock %}
+
+{% block content %}
+<div class="product-description">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="row">
+                {% for product in products_list %}
+                    <div class="col-xs-6">
+                        <a href="{% url 'products-detail' pk=product.id %}">{{ product.title }}</a>{% if product.novelty %}<p class="novelty">Новинка!</p>{% endif %}
+                        <div class="product-images">
+                            {% for image_url in product.product_image.all %}
+                                {% if forloop.first %}
+                                    <img src="{{ image_url }}" width="300" height="200">
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <p>Цена: <b>{{ product.price }} р</b></p><br>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

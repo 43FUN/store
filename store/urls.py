@@ -4,13 +4,14 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.views.generic.base import TemplateView
 
-from store.views import FeedbackView
+from store.views import FeedbackView, ProductsDetailView, ProductsListView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', TemplateView.as_view(template_name='index.html'), name='index'),
-    url(r'^contacts/$', TemplateView.as_view(template_name='contacts.html'), name='contacts'),
-    url(r'^products/$', TemplateView.as_view(template_name='products.html'), name='products'),
+    url(r'^$', TemplateView.as_view(template_name='store/index.html'), name='index'),
+    url(r'^contacts/$', TemplateView.as_view(template_name='store/contacts.html'), name='contacts'),
+    url(r'^products-list/$', ProductsListView.as_view(), name='products-list'),
+    url(r'^products-list/products-detail-(?P<pk>\d+)/$', ProductsDetailView.as_view(), name='products-detail'),
     url(r'^contacts/feedback/$', FeedbackView.as_view(), name='feedback'),
 ]
 

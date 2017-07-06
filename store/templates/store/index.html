@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'store/base.html' %}
 
 {% load staticfiles %}
 
@@ -24,7 +24,13 @@
     </div>
 </div>
 <div class="index-links">
-    <a href="{% url 'products' %}" class="products">Товары</a>
-    <a href="{% url 'contacts' %}" class="contacts">Контакты</a>
+    <div class="row">
+        <div class="col-xs-6">
+            <a href="{% url 'products-list' %}" class="products">Товары</a>
+        </div>
+        <div class="col-xs-6">
+            <a href="{% url 'contacts' %}" class="contacts">Контакты</a>
+        </div>
+    </div>
 </div>
 {% endblock %}
