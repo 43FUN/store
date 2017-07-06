@@ -1,0 +1,17 @@
+{% extends 'store/base.html' %}
+
+{% load staticfiles bootstrap %}
+
+{% block title %}Регистрация{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <form action="" method="post">
+              {% csrf_token %}
+              {{ form|bootstrap }}
+              <button type="submit">Зарегистрироваться</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

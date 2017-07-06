@@ -26,9 +26,13 @@
 .novelty {
     color: #ff581f;
 }
-.link-index-page {
+.link-index-page,
+.link-reqistration-page {
     padding-top: 30px;
 }
 .index-content img {
     width: 100%;
+}
+.link-reqistration-page {
+    text-align: right;
 }

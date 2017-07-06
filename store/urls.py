@@ -4,7 +4,9 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.views.generic.base import TemplateView
 
-from store.views import FeedbackView, ProductsDetailView, ProductsListView
+from store.views import (
+    FeedbackView, ProductsDetailView, ProductsListView, RegistrationUserView
+)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -13,6 +15,7 @@ urlpatterns = [
     url(r'^products-list/$', ProductsListView.as_view(), name='products-list'),
     url(r'^products-list/products-detail-(?P<pk>\d+)/$', ProductsDetailView.as_view(), name='products-detail'),
     url(r'^contacts/feedback/$', FeedbackView.as_view(), name='feedback'),
+    url(r'^registration$', RegistrationUserView.as_view(), name='registration'),
 ]
 
 urlpatterns.extend(static(settings.STATIC_URL, document_root=settings.STATIC_ROOT))

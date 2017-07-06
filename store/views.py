@@ -3,6 +3,7 @@ from django.views import generic
 from django.http import JsonResponse
 from django.core.mail import send_mail
 from django.shortcuts import get_object_or_404
+from django.contrib.auth.forms import UserCreationForm
 
 from store.forms import FeedbackForm
 from store.models import Products
@@ -39,4 +40,14 @@ class ProductsDetailView(generic.DetailView):
             Products, id=self.kwargs.get('pk')
         )
         return context
+
+
+class RegistrationUserView(generic.CreateView):
+    form_class = UserCreationForm
+    success_url = '/'
+    template_name = 'store/registration.html'
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
 

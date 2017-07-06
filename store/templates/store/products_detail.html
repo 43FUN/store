@@ -2,7 +2,7 @@
 
 {% load staticfiles store_tags %}
 
-{% block title %}Описание товара{% endblock %}
+{% block title %}{{ product.title }}{% endblock %}
 
 {% block content %}
 <a href="{% url 'products-list' %}" class="products">Товары</a>
