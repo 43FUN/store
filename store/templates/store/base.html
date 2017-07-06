@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% load staticfiles %}
+    {% load staticfiles store_tags %}
     <title>{% block title %}{% endblock %}</title>
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
     <link href="{% static 'libs/bootstrap-3.3.7/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -21,6 +21,8 @@
                         <a href="{% url 'registration' %}">Регистрация</a>
                         <a href="{% url 'login' %}">Войти</a>
                     {% else %}
+                        {% wallet as wallet %}
+                        <span>Баланс: {{ wallet.money }} р.</span>
                         <a href="{% url 'logout' %}">Выйти({{ request.user }})</a>
                     {% endif %}
                 </div>
