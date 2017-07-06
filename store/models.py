@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import datetime
 
 from django.contrib.auth.models import User
@@ -51,8 +50,8 @@ class Products(models.Model):
     quantity = models.IntegerField(
         verbose_name='количество товара'
     )
-    novelty = models.BooleanField(
-        verbose_name='новинка?'
+    is_new = models.BooleanField(
+        verbose_name='новинка'
     )
 
     class Meta:
@@ -68,8 +67,9 @@ class ProductImage(models.Model):
     product = models.ForeignKey(
         to=Products,
         verbose_name='продукты',
-        related_name='product_image')
-    product_image = models.ImageField(
+        related_name='product_image'
+    )
+    image = models.ImageField(
         verbose_name='изображение товара',
         upload_to='product_image'
     )
@@ -79,7 +79,7 @@ class ProductImage(models.Model):
         verbose_name_plural = 'изображения товаров'
 
     def __str__(self):
-        return self.product_image.url
+        return self.image.url
 
 
 class Wallet(models.Model):

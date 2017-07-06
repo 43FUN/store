@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-t
 from django.views import generic
 from django.http import JsonResponse
 from django.core.mail import send_mail
@@ -36,13 +35,6 @@ class ProductsListView(generic.ListView):
 
 class ProductsDetailView(generic.DetailView):
     model = Products
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['product'] = get_object_or_404(
-            Products, id=self.kwargs.get('pk')
-        )
-        return context
 
 
 class RegistrationUserView(generic.CreateView):
@@ -82,7 +74,7 @@ class BuyProductView(generic.View):
     def post(self, request, *args, **kwargs):
         product_id = self.request.POST.get('product_id', None)
         product = get_object_or_404(Products, id=product_id)
-        wallet = get_object_or_404(Wallet, user=self.request.user)
+        wallet = get_object_or_404(Wallet, user=request.user)
         if wallet.money >= product.price:
             new_balance = wallet.money - product.price
             wallet.money = new_balance

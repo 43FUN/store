@@ -1,18 +1,18 @@
-### Requirements
-----------------
+#### System packages
+* docker
 
-- Python 3.5
-- Django 1.11
-- django-bootstrap-form 3.2.1
-- Pillow 4.1.0
+#### Python packages
+* docker-compose
 
-### Demo
---------
-![Demo 1](examples/demo-1.png?raw=true "Demo 1")
-![Demo 2](examples/demo-2.png?raw=true "Demo 2")
-![Demo 3](examples/demo-3.png?raw=true "Demo 3")
+##### Install docker
 
-### Installation
+`wget -qO- https://get.docker.com/ | sh`
+
+##### Install docker-compose
+
+`sudo pip install docker-compose`
+
+### Install project
 ----------------
 
 Download the archive:
@@ -21,34 +21,16 @@ Download the archive:
 $ git clone https://github.com/43FUN/store.git
 ```
 
-Create a virtual environment:
+Run docker-compose.yml:
 
 ```sh
-$ virtualenv -p python3 --no-site-packages store
+$ docker-compose up
 ```
 
-Log on to virtual environment:
+That's it. By default the project is available at `0.0.0.0:8000`
 
-```sh
-$ source store/bin/activate
-```
-
-Install requirements:
-
-```sh
-$ pip install -r requirements.txt
-```
-
-Apply the migration:
-
-```sh
-$ ./manage.py migrate
-```
-
-Run the project:
-
-```sh
-$ ./manage.py runserver
-```
-
-
+### Demo
+--------
+![Demo 1](examples/demo-1.png?raw=true "Demo 1")
+![Demo 2](examples/demo-2.png?raw=true "Demo 2")
+![Demo 3](examples/demo-3.png?raw=true "Demo 3")

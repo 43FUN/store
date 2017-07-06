@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from django.contrib import admin
 
 from store.models import Products, ProductImage, Feedback, Wallet
@@ -10,7 +9,7 @@ class ProductsImageAdmin(admin.StackedInline):
 
 
 class ProductsAdmin(admin.ModelAdmin):
-    list_display = ('title', 'price', 'quantity', 'novelty')
+    list_display = ('title', 'price', 'quantity', 'is_new')
     inlines = [ProductsImageAdmin, ]
 
 admin.site.register(Products, ProductsAdmin)

@@ -11,7 +11,7 @@
             <div class="row">
                 {% for product in products_list %}
                     <div class="col-xs-6">
-                        <a href="{% url 'products-detail' pk=product.id %}">{{ product.title }}</a>{% if product.novelty %}<p class="novelty">Новинка!</p>{% endif %}
+                        <a href="{% url 'products-detail' pk=product.id %}">{{ product.title }}</a>{% if product.is_new %}<p class="novelty">Новинка!</p>{% endif %}
                         <div class="product-images">
                             {% for image_url in product.product_image.all %}
                                 {% if forloop.first %}
