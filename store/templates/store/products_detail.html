@@ -9,16 +9,20 @@
 <div class="product-description">
     <div class="row">
         <div class="col-xs-12">
-            <h2>{{ product.title }}</h2>{% if product.novelty %}<p class="novelty">Новинка!</p>{% endif %}
+            <h2 data-id="{{ product.id }}">{{ product.title }}</h2>{% if product.novelty %}<p class="novelty">Новинка!</p>{% endif %}
             <div class="product-images">
                 {% for image_url in product.product_image.all %}
                     <img src="{{ image_url }}" width="300" height="200">
                 {% endfor %}
             </div>
             <p>{{ product.description }}</p>
-            <p>Осталось: <b>{{ product.quantity }} шт</b></p>
-            <p>Цена: <b>{{ product.price }} р</b></p>
+            <p>Осталось: <b>{{ product.quantity }}</b> шт</p>
+            <p class="price">Цена: <b>{{ product.price }}</b> p</p>
+            <button id="buy-button">Купить</button>
         </div>
     </div>
 </div>
+<script>
+    var buy_product_url = '{% url 'buy-product' %}';
+</script>
 {% endblock %}

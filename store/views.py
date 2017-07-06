@@ -9,7 +9,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.http import HttpResponseRedirect
 
 from store.forms import FeedbackForm
-from store.models import Products
+from store.models import Products, Wallet
 
 
 class FeedbackView(generic.CreateView):
@@ -74,3 +74,21 @@ class LogoutUserView(generic.View):
     def get(self, request):
         logout(request)
         return HttpResponseRedirect('/')
+
+
+class BuyProductView(generic.View):
+    http_method_names = ['post']
+
+    def post(self, request, *args, **kwargs):
+        product_id = self.request.POST.get('product_id', None)
+        product = get_object_or_404(Products, id=product_id)
+        wallet = get_object_or_404(Wallet, user=self.request.user)
+        if wallet.money >= product.price:
+            new_balance = wallet.money - product.price
+            wallet.money = new_balance
+            wallet.save()
+            response = 'success'
+        else:
+            response = 'fail'
+
+        return JsonResponse({'response': response})
