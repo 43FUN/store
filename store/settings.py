@@ -132,3 +132,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'store/media',)
 MEDIA_URL = '/media/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+try:
+    from store.settings_local import *
+except:
+    pass

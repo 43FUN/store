@@ -11,9 +11,3 @@ register = template.Library()
 @register.assignment_tag()
 def feedback_form():
     return FeedbackForm
-
-
-@register.assignment_tag(takes_context=True)
-def wallet(context):
-    wallet = get_object_or_404(Wallet, user=context.get('request').user)
-    return wallet

@@ -21,8 +21,7 @@
                         <a href="{% url 'registration' %}">Регистрация</a>
                         <a href="{% url 'login' %}">Войти</a>
                     {% else %}
-                        {% wallet as wallet %}
-                        <span>Баланс: <b>{{ wallet.money }}</b> р.</span>
+                        <span>Баланс: <b>{{ request.user.wallet.money }}</b> р.</span>
                         <a href="{% url 'logout' %}">Выйти({{ request.user }})</a>
                     {% endif %}
                 </div>
